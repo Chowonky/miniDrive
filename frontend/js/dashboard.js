@@ -58,10 +58,24 @@ document.getElementById("upload-file").addEventListener("click", async () => {
     );
     const data = await files.json();
 
+    if (!data.files.length) {
+      uploadedFiles.innerHTML = `        
+        <div class="uploaded-files">
+          <b>No files uploaded yet</b> 
+        </div>`;
+    }
+
     for (const f of data.files) {
+      const date = new Date(f.uploaddate);
+      const formattedDate = date.toLocaleDateString("en-IN", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+
       uploadedFiles.innerHTML += `
         <div class="uploaded-files">
-          <b>${f.name}</b> (${f.size})
+          <b>${f.name}</b> (${f.size}) ${formattedDate}
             <a class="download-btn" href="${f.content}" download="${f.name}">Download</a>
             <button data-id="${f.id}" class="delete-btn">Delete</button>
       
@@ -70,7 +84,7 @@ document.getElementById("upload-file").addEventListener("click", async () => {
       `;
     }
 
-    uploadedFiles.innerHTML+="</br>";
+    uploadedFiles.innerHTML += "</br>";
   } catch (error) {
     console.log("Error loading files", error);
     uploadedFiles.innerHTML = "Failed to load uploaded files";
