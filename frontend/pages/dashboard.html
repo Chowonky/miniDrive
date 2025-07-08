@@ -4,25 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>miniDrive Dashboard</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <div class="dashboard">
-      <h1>User details</h1>
+    <div class="dashboard-box">
       <h2 id="name">Name:</h2>
       <h2 id="age">Age:</h2>
       <h2 id="phone-number">Phone Number:</h2>
+      <br />
+      <br />
 
-      <h3>Add a file...</h3>
+      <input class="browse-btn" id="input-file" type="file" />
+      <button class="upload-btn" id="upload-file">Upload</button>
+      <br />
+      <br />
 
-      <input id="input-file" type="file" />
-      <button id="upload-file">Upload</button>
-      <div id="display-uploaded-files">
-        <b> Uploaded files: </b>
-      </div>
+      <div id="display-uploaded-files">Uploaded files:</div>
+      <br />
+      <br />
 
       <div class="link">
-        <a href="../index.html"> Back</a>
+        <a class="link-btn" href="../index.html"> Back</a>
       </div>
     </div>
 

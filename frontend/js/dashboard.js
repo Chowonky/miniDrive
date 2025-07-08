@@ -61,14 +61,16 @@ document.getElementById("upload-file").addEventListener("click", async () => {
     for (const f of data.files) {
       uploadedFiles.innerHTML += `
         <div class="uploaded-files">
-          <b>${f.name}</b> (${f.size})<br/>
-          <a href="${f.content}" download="${f.name}">Download</a>
-          <button data-id="${f.id}" class="delete-btn">Delete</button>        
+          <b>${f.name}</b> (${f.size})
+            <a class="download-btn" href="${f.content}" download="${f.name}">Download</a>
+            <button data-id="${f.id}" class="delete-btn">Delete</button>
+      
         </div>
+        
       `;
-
-      console.log("Download link:", f.content);
     }
+
+    uploadedFiles.innerHTML+="</br>";
   } catch (error) {
     console.log("Error loading files", error);
     uploadedFiles.innerHTML = "Failed to load uploaded files";

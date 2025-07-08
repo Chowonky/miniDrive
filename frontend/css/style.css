@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+  font-family: monospace;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  background-color: #6f4e37;
+  color: white;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+
+.link-btn {
+  color: white;
+  border: white solid 1px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 7px;
+}
+.download-btn {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.btn {
+  color: white;
+  background-color: #6f4e37;
+  font-size: 1.5rem;
+  border: white solid 1px;
+  padding: 7px;
+}
+
+.upload-btn,
+.browse-btn,
+.delete-btn {
+  size: 1rem;
+}
+
+.btn:hover,
+.upload-btn:hover,
+.browse-btn:hover,
+.delete-btn:hover {
+  cursor: pointer;
+}
+label {
+  width: 200px;
+}
+.label-input {
+  font-size: 1.4rem;
+  display: flex;
+  justify-items: right;
+  gap: 10px;
+}
+#display-uploaded-files {
+  font-size: larger;
+}
