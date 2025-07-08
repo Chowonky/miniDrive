@@ -23,6 +23,28 @@ h2 {
   font-size: 3rem;
 }
 
+label {
+  width: 200px;
+}
+
+.label-input {
+  font-size: 1.4rem;
+  display: flex;
+  justify-items: right;
+  gap: 10px;
+}
+input[type="file"] {
+  font-size: 1.4rem;
+}
+
+.form-box,
+.box,
+.dashboard-box {
+  border: silver outset 2px;
+  padding: 50px;
+  border-radius: 10px;
+}
+
 .buttons {
   display: flex;
   gap: 100px;
@@ -30,31 +52,32 @@ h2 {
   font-size: 2rem;
 }
 
+.btn {
+  color: white;
+  background-color: #6f4e37;
+  font-size: 1.5rem;
+  border: silver outset 2px;
+  padding: 7px;
+  border-radius: 10px;
+}
 
 .link-btn {
   color: white;
-  border: white solid 1px;
+  border: silver outset 2px;
   text-decoration: none;
   font-size: 1.5rem;
   padding: 7px;
+  border-radius: 10px;
 }
 .download-btn {
   color: white;
   font-size: 1.2rem;
 }
 
-.btn {
-  color: white;
-  background-color: #6f4e37;
-  font-size: 1.5rem;
-  border: white solid 1px;
-  padding: 7px;
-}
-
 .upload-btn,
 .browse-btn,
 .delete-btn {
-  size: 1rem;
+  font-size: 1.2rem;
 }
 
 .btn:hover,
@@ -63,15 +86,7 @@ h2 {
 .delete-btn:hover {
   cursor: pointer;
 }
-label {
-  width: 200px;
-}
-.label-input {
-  font-size: 1.4rem;
-  display: flex;
-  justify-items: right;
-  gap: 10px;
-}
+
 #display-uploaded-files {
-  font-size: larger;
+  font-size: x-large;
 }
