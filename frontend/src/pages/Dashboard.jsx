@@ -133,7 +133,6 @@ const Dashboard = () => {
       <br />
       <br />
       <div id="display-uploaded-files">
-        <h3>Uploaded files:</h3>
         {files.length === 0 && <p>No files uploaded yet.</p>}
         {files.map((f) => {
           const date = new Date(f.uploaddate).toLocaleDateString("en-IN", {

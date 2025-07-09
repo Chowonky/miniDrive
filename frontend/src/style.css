@@ -21,8 +21,9 @@ h1 {
 }
 
 h2 {
-  font-size: 1.7rem;
-}
+  font-size: 3rem;
+} 
+
 
 /*Input field*/
 
@@ -40,7 +41,6 @@ label {
   text-align: left;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   background-color: #280858;
-
 }
 
 .label-input {
@@ -82,7 +82,7 @@ input[type="file"] {
   border-radius: 10px;
 }
 .download-btn {
-  color: white;
+  color: blue;
   font-size: 1.2rem;
 }
 
@@ -99,8 +99,14 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.uploaded-files {
+  display: flex;
+  padding:1px;
+  gap:10px;
+}
+
 #display-uploaded-files {
   font-size: x-large;
-  padding:100px;
+  padding: 10px;
   align-items: left;
 }
