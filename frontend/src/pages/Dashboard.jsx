@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [files, setFiles] = useState([]);
@@ -156,9 +157,9 @@ const Dashboard = () => {
       <br />
       <br />
       <div className="buttons">
-        <a className="link-btn" href="/">
+        <Link className="link-btn" to="/">
           Back
-        </a>
+        </Link>
         <button className="btn" onClick={handleLogout}>
           Logout
         </button>

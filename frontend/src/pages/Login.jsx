@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -14,7 +14,7 @@ const Login = () => {
 
     if (token && user) {
       const decoded = jwtDecode(token);
-      const now = Date.now()/1000;
+      const now = Date.now() / 1000;
       if (now < decoded.exp) {
         toast.success("Already logged in");
         navigate("/dashboard");
@@ -89,13 +89,13 @@ const Login = () => {
           />
         </div>
 
-        <br />
+        <br />                        
 
         <div className="buttons">
           <input className="btn" type="submit" value="Login" />
-          <a className="link-btn" href="/">
+          <Link className="link-btn" to="/">
             Back
-          </a>
+          </Link>
         </div>
       </form>
     </div>

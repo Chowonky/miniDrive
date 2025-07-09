@@ -11,7 +11,7 @@ body {
   justify-content: center;
   height: 100vh;
 
-  background-color: beige;
+  background-color: skyblue;
   color: white;
 }
 
@@ -21,7 +21,7 @@ h1 {
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: 1.7rem;
 }
 
 /*Input field*/
@@ -39,7 +39,7 @@ label {
   border-radius: 20px;
   text-align: left;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  background-color: #996c4c;
+  background-color: #280858;
 
 }
 
@@ -63,18 +63,19 @@ input[type="file"] {
 }
 
 .btn {
-  color: white;
-  background-color: #996c4c;
+  color: black;
+  background-color: white;
   font-size: 1.5rem;
-  border: silver outset 1px;
+  border: skyblue solid 1px;
   padding: 7px;
 
   border-radius: 10px;
 }
 
 .link-btn {
-  color: white;
-  border: silver outset 1px;
+  color: black;
+  background-color: white;
+  border: skyblue outset 1px;
   text-decoration: none;
   font-size: 1.5rem;
   padding: 7px;
@@ -100,4 +101,6 @@ input[type="file"] {
 
 #display-uploaded-files {
   font-size: x-large;
+  padding:100px;
+  align-items: left;
 }

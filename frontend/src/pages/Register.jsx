@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -93,9 +95,9 @@ const Register = () => {
 
         <div className="buttons">
           <input className="btn" type="submit" value="Register" />
-          <a className="link-btn" href="/">
+          <Link className="link-btn" to="/">
             Back
-          </a>
+          </Link>
         </div>
       </form>
     </div>
