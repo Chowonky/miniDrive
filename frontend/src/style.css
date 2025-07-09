@@ -37,9 +37,10 @@ label {
 .dashboard-box {
   padding: 100px;
   border-radius: 20px;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   background-color: #996c4c;
+
 }
 
 .label-input {

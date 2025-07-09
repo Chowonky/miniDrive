@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [file, setFile] = useState(null);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -60,7 +61,7 @@ const Dashboard = () => {
 
       try {
         const token = JSON.parse(localStorage.getItem("token"));
-
+        console.log("sent token: ", token);
         const res = await fetch("http://localhost:3000/upload", {
           method: "POST",
           headers: {
@@ -86,8 +87,6 @@ const Dashboard = () => {
     if (!window.confirm("Are you sure you want to delete this file?")) return;
 
     try {
-      const token = JSON.parse(localStorage.getItem("token"));
-
       const res = await fetch(`http://localhost:3000/files/${id}`, {
         method: "DELETE",
         headers: {
@@ -106,6 +105,14 @@ const Dashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("token");
+
+    toast.success("Logged out successfully");
+
+    navigate("/login");
+  };
   if (!user) return null;
 
   return (
@@ -142,17 +149,19 @@ const Dashboard = () => {
               <button className="delete-btn" onClick={() => handleDelete(f.id)}>
                 Delete
               </button>
-              <br />
-              <br />
             </div>
           );
         })}
       </div>
-
-      <div className="link">
+      <br />
+      <br />
+      <div className="buttons">
         <a className="link-btn" href="/">
           Back
         </a>
+        <button className="btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </div>
   );

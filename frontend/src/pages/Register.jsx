@@ -75,15 +75,18 @@ const Register = () => {
           ["Password", "password"],
           ["Confirm Password", "confirmPassword"],
         ].map(([label, name]) => (
-          <div className="label-input" key={name}>
-            <label htmlFor={name}>{label}: </label>
-            <input
-              type={name.includes("password") ? "password" : "text"}
-              name={name}
-              id={name}
-              value={form[name]}
-              onChange={handleChange}
-            />
+          <div>
+            <div className="label-input" key={name}>
+              <label htmlFor={name}>{label}: </label>
+              <input
+                type={name.includes("password") ? "password" : "text"}
+                name={name}
+                id={name}
+                value={form[name]}
+                onChange={handleChange}
+              />
+              <br />
+            </div>
             <br />
           </div>
         ))}

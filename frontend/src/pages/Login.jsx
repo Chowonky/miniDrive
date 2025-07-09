@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import {jwtDecode} from "jwt-decode";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("loggedInUser");
+
+    if (token && user) {
+      const decoded = jwtDecode(token);
+      const now = Date.now()/1000;
+      if (now < decoded.exp) {
+        toast.success("Already logged in");
+        navigate("/dashboard");
+      } else {
+        toast.error("Token expired");
+        localStorage.clear();
+        navigate("/login");
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
