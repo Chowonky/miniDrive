@@ -31,6 +31,7 @@ const Login = () => {
         toast.success("You have successfully logged in");
         delete data.user.password;
         localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+        localStorage.setItem("token", JSON.stringify(data.token));
         navigate("/dashboard");
       } else {
         const data = await res.json();

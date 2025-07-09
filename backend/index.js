@@ -13,10 +13,10 @@ const PORT = process.env.PORT;
 const corsOptions = {
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use(cors(corsOptions));
-app.use(express.json({ limit: "100mb" }));
+app.use(express.json({ limit: "1024mb" }));
 
 app.use(userRoutes);
 app.use(fileRoutes);

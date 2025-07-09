@@ -21,7 +21,12 @@ const Dashboard = () => {
 
   const fetchFiles = async (phoneNumber) => {
     try {
-      const res = await fetch(`http://localhost:3000/files/${phoneNumber}`);
+      const token = JSON.parse(localStorage.getItem("token"));
+      const res = await fetch(`http://localhost:3000/files/${phoneNumber}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await res.json();
       setFiles(data.files);
     } catch (error) {
@@ -43,6 +48,8 @@ const Dashboard = () => {
     reader.readAsDataURL(file);
 
     reader.onload = async () => {
+      if (file.size / 1024 > 1048576) toast.error("File too big (Limit: 1GB)!");
+
       const fileObj = {
         name: file.name,
         size: Math.ceil(file.size / 1024) + " KB",
@@ -52,10 +59,13 @@ const Dashboard = () => {
       };
 
       try {
+        const token = JSON.parse(localStorage.getItem("token"));
+
         const res = await fetch("http://localhost:3000/upload", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(fileObj),
         });
@@ -76,8 +86,13 @@ const Dashboard = () => {
     if (!window.confirm("Are you sure you want to delete this file?")) return;
 
     try {
+      const token = JSON.parse(localStorage.getItem("token"));
+
       const res = await fetch(`http://localhost:3000/files/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (res.ok) {

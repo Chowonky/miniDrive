@@ -2,13 +2,14 @@ import express from "express";
 import {
   uploadFile,
   getFiles,
-  deleteFile
+  deleteFile,
 } from "../controllers/fileController.js";
+import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/upload", uploadFile);
-router.get("/files/:phoneNumber", getFiles);
-router.delete("/files/:id", deleteFile);
+router.post("/upload", verifyToken, uploadFile);
+router.get("/files/:phoneNumber", verifyToken, getFiles);
+router.delete("/files/:id", verifyToken, deleteFile);
 
 export default router;
