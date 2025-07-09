@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import fileRoutes from "./routes/fileRoutes.js";
 
-dotenv.config();
+dotenv.config({ path: "./backend/.env" });
 
 const app = express();
 const PORT = process.env.PORT;

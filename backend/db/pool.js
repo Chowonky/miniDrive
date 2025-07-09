@@ -1,7 +1,7 @@
 import pkg from "pg";
 import express from "express";
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "./backend/.env" });
 
 const Pool = pkg.Pool;
 const pool = new Pool({
