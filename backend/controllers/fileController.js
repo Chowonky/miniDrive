@@ -6,7 +6,7 @@ export const uploadFile = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `INSERT INTO files(phoneNumber,name, size, type, uploaddate,content) VALUES ($1, $2, $3, $4, $5,$6) RETURNING *`,
+      `INSERT INTO files(phonenumber,name, size, type, uploaddate,content,email) VALUES ($1, $2, $3, $4, $5,$6,$7) RETURNING *`,
       [
         file.phoneNumber,
         file.name,
@@ -14,6 +14,7 @@ export const uploadFile = async (req, res) => {
         file.type,
         new Date(),
         file.content,
+        file.email,
       ]
     );
 
@@ -28,12 +29,12 @@ export const uploadFile = async (req, res) => {
 
 export const getFiles = async (req, res) => {
   try {
-    const phoneNumber = req.params.phoneNumber;
+    const email = req.params.email;
 
     const files = await pool.query(
       `
-        SELECT * from files where phonenumber=$1 order by uploaddate DESC`,
-      [phoneNumber]
+        SELECT * from files where email=$1 order by uploaddate DESC`,
+      [email]
     );
 
     res.json({ files: files.rows });

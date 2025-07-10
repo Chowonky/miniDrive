@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -29,12 +29,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!phoneNumber || !password) {
+    if (!email || !password) {
       toast.error("Please enter all fields");
       return;
     }
 
-    const user = { phoneNumber, password };
+    const user = { email, password };
 
     try {
       const res = await fetch("http://localhost:3000/login", {
@@ -66,13 +66,13 @@ const Login = () => {
     <div className="form-box">
       <form id="login-form" onSubmit={handleSubmit}>
         <div className="label-input">
-          <label htmlFor="phone-number">Phone Number: </label>
+          <label htmlFor="email">Email: </label>
           <input
             type="text"
-            id="phone-number"
-            name="phone-number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 

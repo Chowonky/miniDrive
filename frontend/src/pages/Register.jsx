@@ -3,11 +3,11 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-
 const Register = () => {
   const [form, setForm] = useState({
     fname: "",
     lname: "",
+    email: "",
     phoneNumber: "",
     age: "",
     password: "",
@@ -23,11 +23,13 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { fname, lname, age, phoneNumber, password, confirmPassword } = form;
+    const { fname, lname, email, age, phoneNumber, password, confirmPassword } =
+      form;
 
     if (
       !fname ||
       !lname ||
+      !email ||
       !age ||
       !phoneNumber ||
       !password ||
@@ -42,7 +44,7 @@ const Register = () => {
       return;
     }
 
-    const user = { fname, lname, age, phoneNumber, password };
+    const user = { fname, lname, email, age, phoneNumber, password };
 
     try {
       const res = await fetch("http://localhost:3000/register", {
@@ -72,6 +74,7 @@ const Register = () => {
         {[
           ["First Name", "fname"],
           ["Last Name", "lname"],
+          ["Email", "email"],
           ["Phone Number", "phoneNumber"],
           ["Age", "age"],
           ["Password", "password"],

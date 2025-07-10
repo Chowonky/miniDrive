@@ -18,13 +18,13 @@ const Dashboard = () => {
       return;
     }
     setUser(loggedInUser);
-    fetchFiles(loggedInUser.phonenumber);
+    fetchFiles(loggedInUser.email);
   }, []);
 
-  const fetchFiles = async (phoneNumber) => {
+  const fetchFiles = async (email) => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
-      const res = await fetch(`http://localhost:3000/files/${phoneNumber}`, {
+      const res = await fetch(`http://localhost:3000/files/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,8 +58,9 @@ const Dashboard = () => {
         type: file.type,
         content: reader.result,
         phoneNumber: user.phonenumber,
+        email: user.email,
       };
-
+      // console.log(user.phonenumber);
       try {
         const token = JSON.parse(localStorage.getItem("token"));
         console.log("sent token: ", token);
@@ -74,7 +75,7 @@ const Dashboard = () => {
 
         if (res.ok) {
           toast.success("File uploaded successfully");
-          fetchFiles(user.phonenumber);
+          fetchFiles(user.email);
         } else {
           toast.error("Failed to upload");
         }
@@ -122,7 +123,8 @@ const Dashboard = () => {
         Name: {user.fname} {user.lname}
       </h2>
       <h2>Age: {user.age}</h2>
-      <h2>Phone Number: {user.phonenumber}</h2>
+      <h2>Phone Number: {user.phoneNumber}</h2>
+      <h2>Email: {user.email}</h2>
 
       <br />
       <input className="browse-btn" type="file" onChange={handleFileChange} />

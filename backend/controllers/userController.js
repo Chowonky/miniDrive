@@ -8,8 +8,15 @@ export const registerUser = async (req, res) => {
 
   try {
     const result = await pool.query(
-      `INSERT INTO users(fname, lname, age, phoneNumber, password) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-      [user.fname, user.lname, user.age, user.phoneNumber, hashedPassword]
+      `INSERT INTO users(fname, lname, age, phoneNumber, password,email) VALUES ($1, $2, $3, $4, $5 ,$6) RETURNING *`,
+      [
+        user.fname,
+        user.lname,
+        user.age,
+        user.phoneNumber,
+        hashedPassword, 
+        user.email,
+      ]
     );
 
     res
@@ -22,13 +29,12 @@ export const registerUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-  const { phoneNumber, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const result = await pool.query(
-      `SELECT * FROM USERS WHERE phoneNumber=$1`,
-      [phoneNumber]
-    );
+    const result = await pool.query(`SELECT * FROM USERS WHERE email=$1`, [
+      email,
+    ]);
     if (result.rows.length === 0) {
       res.status(401).json({ error: "Invalid User" });
       return;
@@ -42,7 +48,7 @@ export const loginUser = async (req, res) => {
 
     const user = result.rows[0];
     const token = jwt.sign(
-      { id: user.id, phoneNumber: user.phonenumber },
+      { id: user.id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
