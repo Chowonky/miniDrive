@@ -7,6 +7,14 @@ export const registerUser = async (req, res) => {
   const hashedPassword = await bcrypt.hash(user.password, 10);
 
   try {
+    const users = await pool.query(
+      `SELECT * FROM USERS WHERE email=$1 OR phonenumber=$2`,
+      [user.email, user.phoneNumber]
+    );
+    if (users.rows.length !== 0) {
+      res.status(401).json({ error: "User already exists" });
+      return;
+    }
     const result = await pool.query(
       `INSERT INTO users(fname, lname, age, phoneNumber, password,email) VALUES ($1, $2, $3, $4, $5 ,$6) RETURNING *`,
       [
@@ -14,7 +22,7 @@ export const registerUser = async (req, res) => {
         user.lname,
         user.age,
         user.phoneNumber,
-        hashedPassword, 
+        hashedPassword,
         user.email,
       ]
     );
@@ -23,8 +31,8 @@ export const registerUser = async (req, res) => {
       .status(201)
       .json({ user: result.rows[0], message: "Registered succesfully" });
   } catch (error) {
-    console.log("User already exists");
-    res.status(401).json({ error: "User already exists" });
+    console.log(error);
+    res.status(401).json({ error: "Unknown Error" });
   }
 };
 

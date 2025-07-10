@@ -39,6 +39,21 @@ const Register = () => {
       return;
     }
 
+    if (isNaN(phoneNumber) || phoneNumber.length!=10) {
+      toast.error("Enter valid Phone Number");
+      return;
+    }
+
+    if (isNaN(age)) {
+      toast.error("Enter valid age");
+      return;
+    }
+
+    if (!email.endsWith("@gmail.com")) {
+      toast.error("Please enter a valid email");
+      return;
+    }
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;

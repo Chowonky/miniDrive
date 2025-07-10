@@ -123,7 +123,7 @@ const Dashboard = () => {
         Name: {user.fname} {user.lname}
       </h2>
       <h2>Age: {user.age}</h2>
-      <h2>Phone Number: {user.phoneNumber}</h2>
+      <h2>Phone Number: {user.phonenumber}</h2>
       <h2>Email: {user.email}</h2>
 
       <br />
