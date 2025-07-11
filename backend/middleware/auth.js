@@ -7,11 +7,11 @@ export function verifyToken(req, res, next) {
     return res.status(401).json({ error: "Unauthorized" });
   }
   const token = authHeader.split(" ")[1];
-  // console.log(token);
+   console.log("auth",token);
 
   try {
     const decodedUser = jwt.verify(token, process.env.JWT_SECRET);
-    // console.log(decodedUser);
+    //console.log(decodedUser);
     next();
   } catch (e) {
     return res.status(401).json({ error: "Invalid or expired token" });

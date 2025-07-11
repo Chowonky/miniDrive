@@ -8,10 +8,11 @@ const Dashboard = () => {
   const [file, setFile] = useState(null);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    //console.log(loggedInUser);
     if (!loggedInUser) {
       toast.error("Please login first");
       navigate("/login");
@@ -23,7 +24,8 @@ const Dashboard = () => {
 
   const fetchFiles = async (email) => {
     try {
-      const token = JSON.parse(localStorage.getItem("token"));
+      const token = localStorage.getItem("token");
+      //console.log("www",token);
       const res = await fetch(`http://localhost:3000/files/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -60,10 +62,10 @@ const Dashboard = () => {
         phoneNumber: user.phonenumber,
         email: user.email,
       };
-      // console.log(user.phonenumber);
+
       try {
-        const token = JSON.parse(localStorage.getItem("token"));
-        console.log("sent token: ", token);
+        const token = localStorage.getItem("token");
+        // console.log("sent token: ", token);
         const res = await fetch("http://localhost:3000/upload", {
           method: "POST",
           headers: {
@@ -110,6 +112,7 @@ const Dashboard = () => {
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
 
     toast.success("Logged out successfully");
 

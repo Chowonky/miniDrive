@@ -6,8 +6,8 @@ import { jwtDecode } from "jwt-decode";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("loggedInUser");
@@ -24,8 +24,7 @@ const Login = () => {
         navigate("/login");
       }
     }
-  }, []);
-
+  }, []); 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,11 +46,13 @@ const Login = () => {
 
       if (res.ok) {
         const data = await res.json();
-        toast.success("You have successfully logged in");
-        delete data.user.password;
+        toast.success("OTP sent");
+        localStorage.setItem("email", email);
+        localStorage.setItem("token", data.token);
         localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-        localStorage.setItem("token", JSON.stringify(data.token));
-        navigate("/dashboard");
+
+        //console.log(data.token);
+        navigate("/verify-otp");
       } else {
         const data = await res.json();
         toast.error(data.error || "Invalid credentials");
@@ -89,7 +90,7 @@ const Login = () => {
           />
         </div>
 
-        <br />                        
+        <br />
 
         <div className="buttons">
           <input className="btn" type="submit" value="Login" />

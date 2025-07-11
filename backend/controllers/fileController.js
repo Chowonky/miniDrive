@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 export const uploadFile = async (req, res) => {
   const file = req.body;
+  //console.log(file.email, file.phoneNumber);
 
   try {
     const result = await pool.query(
